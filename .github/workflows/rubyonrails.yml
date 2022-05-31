@@ -1,0 +1,43 @@
+# .github/workflows/ci.yml
+
+name: CI_Test
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }} # This is on gh secrets
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s
+
+    steps:
+      - name: Setup Ruby
+        uses: actions/checkout@v2
+
+      - name: Install Ruby Version 3.0.0 and cache gems
+        uses: ruby/setup-ruby@477b21f02be01bcb8030d50f37cfec92bfa615b6
+        with:
+          ruby-version: 3.0.0
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - uses: actions/checkout@v1
+
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.16'
+
+      - name: Build and run tests
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }} # This is on gh secrets
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          RAILS_ENV=test bundle exec rails db:prepare
+          bundle exec rails test
