@@ -19,3 +19,5 @@ User.create(email: 'test3@test.com', password: 'password')
 
 
 Inventory.create(user: User.first, material: Material.first, stock: 10)
+Inventory.create(user: User.second, material: Material.second, stock: 20)
+Inventory.create(user: User.third, material: Material.third, stock: 30)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_042728) do
+ActiveRecord::Schema.define(version: 2022_06_11_191723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2022_06_06_042728) do
   create_table "inventories", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "material_id"
-    t.decimal "stock"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "stock"
     t.index ["material_id"], name: "index_inventories_on_material_id"
     t.index ["user_id"], name: "index_inventories_on_user_id"
   end
