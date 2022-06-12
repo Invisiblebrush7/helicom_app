@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_11_192443) do
+ActiveRecord::Schema.define(version: 2022_06_12_070721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 2022_06_11_192443) do
     t.integer "stock"
     t.index ["material_id"], name: "index_inventories_on_material_id"
     t.index ["user_id"], name: "index_inventories_on_user_id"
+  end
+
+  create_table "material_requests", force: :cascade do |t|
+    t.date "requested_date"
+    t.string "status"
+    t.bigint "who_authorized_id", null: false
+    t.bigint "who_requested_id", null: false
+    t.bigint "material_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["material_id"], name: "index_material_requests_on_material_id"
+    t.index ["who_authorized_id"], name: "index_material_requests_on_who_authorized_id"
+    t.index ["who_requested_id"], name: "index_material_requests_on_who_requested_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -57,4 +70,7 @@ ActiveRecord::Schema.define(version: 2022_06_11_192443) do
 
   add_foreign_key "inventories", "materials"
   add_foreign_key "inventories", "users"
+  add_foreign_key "material_requests", "materials"
+  add_foreign_key "material_requests", "users", column: "who_authorized_id"
+  add_foreign_key "material_requests", "users", column: "who_requested_id"
 end
