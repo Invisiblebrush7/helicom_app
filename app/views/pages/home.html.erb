@@ -1,2 +1,48 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= render "shared/modal" %>
+
+<%= render "shared/navbar" %>
+
+<div class="hero-content">
+  <h1>Soluciones de software para tu empresa</h1>
+  <h2>Empieza a <span>modernizar</span> tu negocio ahora.</h2>
+
+  <%= render "shared/main_btn" %>
+</div>
+
+<div class="project-detail-content grey-content content-padding">
+  <h3>Conoce más sobre nuestros proyectos activos</h3>
+  <div class="project-grid">
+    <div class="image-temp"></div>
+    <div class="project-info">
+      <h4>Laboratorio de Patología y Nefropatología</h4>
+      <p>App para almacenar registros médicos y obtener informes de desempeño.</p>
+    </div>
+    <div class="image-temp"></div>
+    <div class="image-temp"></div>
+
+  </div>
+</div>
+
+<div class="project-detail-content content-padding">
+  <div class="project-grid">
+    <div class="project-info">
+      <h4>Helicom</h4>
+      <p>App para generar informes de distintos proyectos y subir información para poder almacenarla.</p>
+    </div>
+    <div class="image-temp"></div>
+    <div class="image-temp"></div>
+    <div class="image-temp"></div>
+
+  </div>
+</div>
+
+<div class="hero-content bottom">
+  <h1>Soluciones de software para tu empresa</h1>
+  <h2>Empieza ahora y cambia tu <span>futuro.</span></h2>
+
+  <%= render "shared/main_btn" %>
+</div>
+
+<%= render "shared/bottom_navbar" %>
+<%= javascript_pack_tag 'modal_display' %>
+
