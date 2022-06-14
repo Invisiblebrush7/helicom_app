@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
   end
 
-  def test
-
+  def dashboard
   end
+
 end

@@ -3,9 +3,12 @@
   <div class="left-side-navbar">
     <a href="#">Ideas Maker</a>
   </div>
-
   <div class="right-side-navbar">
     <a href="#" class="open-modal">Contacto</a>
-    <a href="#">Iniciar Sesión</a>
+    <% if user_signed_in? %>
+      <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Iniciar sesión", new_user_session_path %>
+    <% end %>
   </div>
 </div>
