@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :inventories
   has_many :material_requests, class_name: 'MaterialRequest', foreign_key: 'who_requested_id'
   has_many :material_requests, class_name: 'MaterialRequest', foreign_key: 'who_authorized_id'
+  has_many :records
 end
