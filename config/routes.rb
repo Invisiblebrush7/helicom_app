@@ -3,5 +3,10 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
+
+  # Records Controller
+  get '/dashboard', to: 'records#dashboard', as: 'dashboard'
+  get '/registros', to: 'records#index', as: 'index'
+  get '/registros/:id', to: 'records#show', as: 'show'
+
 end

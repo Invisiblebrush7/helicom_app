@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_070721) do
+ActiveRecord::Schema.define(version: 2022_06_14_044752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,52 @@ ActiveRecord::Schema.define(version: 2022_06_12_070721) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "records", force: :cascade do |t|
+    t.string "pedido", null: false
+    t.string "division", null: false
+    t.string "subdireccion", null: false
+    t.string "area", null: false
+    t.string "cope", null: false
+    t.string "distrito", null: false
+    t.string "estado", null: false
+    t.string "principal_fo", null: false
+    t.integer "tendido_secundario", null: false
+    t.integer "conectorizacion_terminales", null: false
+    t.integer "detallado_distrito", null: false
+    t.boolean "programa_thx", null: false
+    t.boolean "programa_htm", null: false
+    t.date "fecha_expedicion", null: false
+    t.bigint "user_id", null: false
+    t.date "fecha_compromiso", null: false
+    t.integer "total", null: false
+    t.decimal "porcentaje_material", null: false
+    t.string "pep", null: false
+    t.string "operaciones", null: false
+    t.string "oei", null: false
+    t.string "oe", null: false
+    t.string "programa", null: false
+    t.string "subprograma", null: false
+    t.string "id_obra", null: false
+    t.string "migrador"
+    t.text "comentarios"
+    t.string "ventas"
+    t.string "mes_programa_helicom"
+    t.string "protocolo"
+    t.string "planos"
+    t.string "permisos"
+    t.string "key"
+    t.integer "numero_terminales"
+    t.integer "km_secundario"
+    t.integer "puertos"
+    t.integer "clientes"
+    t.date "fecha_entrega_protocolo"
+    t.date "fecha_navegacion"
+    t.string "clave_cna"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,4 +119,5 @@ ActiveRecord::Schema.define(version: 2022_06_12_070721) do
   add_foreign_key "material_requests", "materials"
   add_foreign_key "material_requests", "users", column: "who_authorized_id"
   add_foreign_key "material_requests", "users", column: "who_requested_id"
+  add_foreign_key "records", "users"
 end
