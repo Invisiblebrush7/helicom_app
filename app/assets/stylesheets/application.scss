@@ -50,10 +50,16 @@ p {
 
 .content {
   margin: 0 auto;
-  width: 90%;
+  width: 70%;
 }
 .content-padding {
   padding: 3rem 5rem;
+}
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 
